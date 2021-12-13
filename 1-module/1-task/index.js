@@ -1,5 +1,5 @@
 function factorial(n) {
-  m = 1;
+  let m = 1;
   if (n == 0) {
     return m;
   }
