@@ -5,15 +5,13 @@ export default class Carousel {
     this.slides = slides;
     this.render();
 
-    let carouselButton = this.elem.querySelector(".carousel__button");
-    carouselButton.addEventListener("click", this.onClick);
-    // carouselButton.forEach(btn => {
-    //   btn.addEventListener("click", this.onClick);
-    // });
+    let carouselButton = this.elem.querySelectorAll(".carousel__button");
+    // carouselButton.addEventListener("click", this.onClick);
+    carouselButton.forEach((btn) => {
+      btn.addEventListener("click", this.onClick);
+    });
     // this.id = carouselButton.closest(".carousel__slide").dataset.id;
-
-    this.widthOneSlide =
-      document.querySelector(".container").offsetWidth;
+    
     this.slidesNumber = this.elem.querySelectorAll(".carousel__slide").length;
     this.position = 0;
     this.caruselInner = this.elem.querySelector(".carousel__inner");
@@ -53,8 +51,9 @@ export default class Carousel {
   }
 
   onClick = (btn) => {
+    let index = (this.elem.offsetWidth - this.position) / this.elem.offsetWidth - 1
     let customEvent = new CustomEvent("product-add", {
-      detail: btn.path[3].dataset.id,
+      detail: this.slides[index].id,
       bubbles: true,
     });
 
@@ -73,6 +72,8 @@ export default class Carousel {
   }
 
   onClickArrowNext = () => {
+    this.widthOneSlide =
+      this.elem.offsetWidth;
     this.position = this.position - this.widthOneSlide;
     this.caruselInner.style.transform = `translateX(${this.position}px)`;
     if (this.position == 0 - this.widthOneSlide * (this.slidesNumber - 1)) {
