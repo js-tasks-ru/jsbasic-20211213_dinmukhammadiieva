@@ -6,11 +6,11 @@ function initCarousel() {
   let carouselArrowNext = document.querySelector(".carousel__arrow_right");
   carouselArrowPrev.style.display = "none";
   let position = 0;
-  console.log(widthOneSlide, slidesNumber);
+  // console.log(widthOneSlide, slidesNumber);
   carouselArrowNext.addEventListener("click", () => {
     position = position - widthOneSlide;
     caruselInner.style.transform = `translateX(${ position }px)`;
-    console.log(position);
+    // console.log(position);
     if (position == 0 - widthOneSlide * (slidesNumber - 1)) {
       carouselArrowNext.style.display = "none";
     } else {
@@ -21,7 +21,7 @@ function initCarousel() {
   carouselArrowPrev.addEventListener("click", () => {
     position = position + widthOneSlide;
     caruselInner.style.transform = `translateX(${ position }px)`;
-    console.log(position);
+    // console.log(position);
     if (position == 0) {
       carouselArrowPrev.style.display = "none";
     } else {
