@@ -51,7 +51,7 @@ export default class Carousel {
   }
 
   onClick = (btn) => {
-    let index = (this.elem.offsetWidth - this.position) / this.elem.offsetWidth - 1
+    let index = (this.elem.offsetWidth - this.position) / this.elem.offsetWidth - 1;
     let customEvent = new CustomEvent("product-add", {
       detail: this.slides[index].id,
       bubbles: true,
