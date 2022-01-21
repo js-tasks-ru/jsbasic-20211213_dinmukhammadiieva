@@ -11,6 +11,12 @@ export default class StepSlider {
 
     this.elem.addEventListener("click", this.clickSlider);
     this.elem.addEventListener("click", this.onClick);
+
+    this.thumb = this.elem.querySelector('.slider__thumb');
+    this.thumb.ondragstart = () => false;
+
+    this.thumb.addEventListener("pointerdown", this.onPointerDownThumb);
+    this.thumb.addEventListener("pointerdown", this.onClick);
   }
 
   render() {
@@ -42,9 +48,20 @@ export default class StepSlider {
 
   clickSlider = (e) => {
     let clickPosition = e.clientX - this.elem.getBoundingClientRect().left;
+
+    let leftRelative = clickPosition / this.elem.offsetWidth;
+
+    if (leftRelative < 0) {
+      leftRelative = 0;
+    }
+
+    if (leftRelative > 1) {
+      leftRelative = 1;
+    }
+
     // clickPosition - x
     // this.elem.offsetWidth - this.steps - 1
-    let value = (this.steps - 1) * clickPosition / this.elem.offsetWidth;
+    let value = (this.steps - 1) * leftRelative;
     this.value = Math.round(value);
 
     this.elem.querySelector(".slider__value").innerHTML = this.value;
@@ -56,6 +73,30 @@ export default class StepSlider {
     let leftPersent = 100 * this.value / (this.steps - 1);
     this.elem.querySelector('.slider__thumb').style.left = `${leftPersent}%`;
     this.elem.querySelector('.slider__progress').style.width = `${leftPersent}%`;
+  }
+
+  onPointerDownThumb = (e) => {
+    e.preventDefault();
+    this.elem.classList.add("slider_dragging");
+
+    document.addEventListener("pointermove", this.onPointerMoveThumb);
+    document.addEventListener("pointermove", this.onClick);
+
+    document.addEventListener('pointerup', this.onPointerUpThumb);
+    document.addEventListener('pointerup', this.onClick);
+  }
+
+  onPointerMoveThumb = (e) => {
+    e.preventDefault();
+    this.clickSlider(e);
+  }
+
+  onPointerUpThumb = () => {
+    this.elem.classList.remove("slider_dragging");
+    document.removeEventListener('pointermove', this.onPointerMoveThumb);
+    document.removeEventListener('pointermove', this.onClick);
+    document.removeEventListener('pointerup', this.onPointerUpThumb);
+    document.removeEventListener('pointerup', this.onClick);
   }
 
   onClick = () => {
