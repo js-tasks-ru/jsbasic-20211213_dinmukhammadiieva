@@ -25,7 +25,7 @@ export default class UserTable {
   render(rows) {
     this.elem = document.createElement('table');
     this.elem.innerHTML += "<thead><tr><th>Имя</th><th>Возраст</th><th>Зарплата</th><th>Город</th><th></th></tr></thead><tbody>";
-    rows.map(row => {
+    rows.forEach((row) => {
       this.elem.innerHTML += `<tr>
                   <td>${row.name}</td>
                   <td>${row.age}</td>
