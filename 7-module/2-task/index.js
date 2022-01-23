@@ -47,6 +47,9 @@ export default class Modal {
     let modalBody = document.createElement('div');
     modalBody.classList.add("modal__body");
     modalBody.append(str);
+    if (this.elem.querySelector(".modal__body")) {
+      this.elem.querySelector(".modal__body").remove();
+    }
     this.elem.querySelector(".modal__inner").append(modalBody);
   }
 

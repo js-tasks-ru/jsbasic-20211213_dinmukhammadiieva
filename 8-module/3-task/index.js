@@ -19,7 +19,7 @@ export default class Cart {
         };
         this.cartItems.push(cartItem);
       }
-      console.log(this.cartItems);
+      // console.log(this.cartItems);
       this.onProductUpdate(cartItem);
     }
   }
