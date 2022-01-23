@@ -51,7 +51,7 @@ export default class CartIcon {
       }
 
       let fromLeftPosition1 =
-        document.querySelectorAll(".container")[0].getBoundingClientRect()
+        document.querySelector(".container").getBoundingClientRect()
           .right + 20;
       let fromLeftPosition2 =
         document.documentElement.clientWidth - this.elem.offsetWidth - 10;
