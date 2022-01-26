@@ -6,8 +6,9 @@ export default class StepSlider {
     this.value = value;
     this.render();
 
-    this.elem.querySelector(".slider__thumb").style.left = 0;
-    this.elem.querySelector(".slider__progress").style.width = 0;
+    let leftPersent = (100 * this.value) / (this.steps - 1);
+    this.elem.querySelector(".slider__thumb").style.left = `${leftPersent}%`;
+    this.elem.querySelector(".slider__progress").style.width = `${leftPersent}%`;
 
     this.elem.addEventListener("click", this.clickSlider);
     this.elem.addEventListener("click", this.onClick);
