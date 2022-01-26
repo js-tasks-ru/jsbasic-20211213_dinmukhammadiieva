@@ -75,18 +75,18 @@ export default class CartIcon {
     }
   }
 
-  isEmpty() {
-    // возвращает true если корзина пуста и false если нет
-    return true;
-  }
+  // isEmpty() {
+  //   // возвращает true если корзина пуста и false если нет
+  //   return true;
+  // }
 
-  getTotalCount() {
-    // Возвращает общее количество товаров в корзине
-    return 0;
-  }
+  // getTotalCount() {
+  //   // Возвращает общее количество товаров в корзине
+  //   return 0;
+  // }
 
-  getTotalPrice() {
-    // Возвращает общую сумму всех товаров в корзине
-    return 0;
-  }
+  // getTotalPrice() {
+  //   // Возвращает общую сумму всех товаров в корзине
+  //   return 0;
+  // }
 }
